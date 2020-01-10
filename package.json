@@ -16,5 +16,8 @@
     "url": "https://github.com/node-rpc/node-rpc-examples/issues"
   },
   "homepage": "https://github.com/node-rpc/node-rpc-examples#readme",
-  "dependencies": {}
+  "dependencies": {
+    "node-agent-cli": "^1.0.8",
+    "node-rpc-lite": "^1.0.0"
+  }
 }
