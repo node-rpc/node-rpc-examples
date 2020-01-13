@@ -4,7 +4,10 @@
   "description": "user guide",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run-ts": "ts-node",
+    "server": "ts-node ./src/server.ts",
+    "client": "ts-node ./src/client.ts"
   },
   "repository": {
     "type": "git",
@@ -16,5 +19,16 @@
     "url": "https://github.com/node-rpc/node-rpc-examples/issues"
   },
   "homepage": "https://github.com/node-rpc/node-rpc-examples#readme",
-  "dependencies": {}
+  "dependencies": {
+    "@types/signale": "^1.2.1",
+    "node-agent-cli": "^1.0.8",
+    "node-rpc-lite": "^1.0.1",
+    "signale": "^1.4.0",
+    "typescript": "^3.7.4"
+  },
+  "devDependencies": {
+    "ts-node": "^8.6.1",
+    "tslint": "^5.20.1",
+    "typescript-eslint-parser": "^22.0.0"
+  }
 }
