@@ -22,7 +22,7 @@
   "dependencies": {
     "@types/signale": "^1.2.1",
     "node-agent-cli": "^1.0.8",
-    "node-rpc-lite": "^1.0.0",
+    "node-rpc-lite": "^1.0.1",
     "signale": "^1.4.0",
     "typescript": "^3.7.4"
   },
