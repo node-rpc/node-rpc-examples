@@ -22,21 +22,30 @@ const log = async (ctx: Context, next: NextFNType) => {
 // 路由
 const router: Router = new Router();
 router.on("querywork", async (ctx: Context) => {
-    ctx.dataWillBeEncode = {
-        send: "send data",
-    };
+
+    await new Promise((resolve) => {
+        setTimeout(() => {
+            ctx.dataWillBeEncode = {
+                send: "send data after waiting 1000 ms",
+            };
+            resolve();
+        }, 1000);
+    });
 
     signale.debug(`recive data ${JSON.stringify(ctx.receive)}`);
 });
 
 const server: Server = new Server(config);
 
-server.use(log);
 server.use(decode.use);
 server.use(router.route);
+server.use(log);
 server.use(encode.use);
 server.use(writer.use);
 
+server.on("start", (conf) => {
+    signale.debug(`server start ${conf.host}: ${conf.port}`);
+});
+
 server.start();
 
-signale.debug(`server start ${config.ip}: ${config.port}`);
