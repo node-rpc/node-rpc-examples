@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "declaration": true,
     "module": "commonjs",
-    "outDir": "./lib",          
+    "outDir": "./bin",          
     "strict": true,
     "esModuleInterop": true,
     "resolveJsonModule": true

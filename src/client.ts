@@ -26,6 +26,9 @@ const message = {
 client.on("data", (msg) => {
     signale.debug("client recieve data:");
     signale.debug(msg);
+
+    client.close();
 });
+
 
 client.push(message);

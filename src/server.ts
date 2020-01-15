@@ -1,5 +1,6 @@
 import { Context, IServerConfig, NextFNType, Router, Server, V1Decode, V1Encode, Writer } from "node-rpc-lite";
 import signale from "signale";
+import uuid from "uuid/v1";
 
 const config: IServerConfig = {
     duration: 500,
@@ -19,24 +20,35 @@ const log = async (ctx: Context, next: NextFNType) => {
     }
 };
 
+const uid: string = uuid();
+
 // 路由
 const router: Router = new Router();
 router.on("querywork", async (ctx: Context) => {
-    ctx.dataWillBeEncode = {
-        send: "send data",
-    };
 
-    signale.debug(`recive data ${JSON.stringify(ctx.receive)}`);
+    await new Promise((resolve) => {
+        setTimeout(() => {
+            ctx.dataWillBeEncode = {
+                send: "send data after waiting 1000 ms",
+            };
+            resolve();
+        }, 1000);
+    });
+
+    signale.debug(`recive data ${JSON.stringify(ctx.receive)}, uuid: ${uid}`);
 });
 
 const server: Server = new Server(config);
 
-server.use(log);
 server.use(decode.use);
 server.use(router.route);
+server.use(log);
 server.use(encode.use);
 server.use(writer.use);
 
+server.on("start", (conf) => {
+    signale.debug(`server start ${conf.host}: ${conf.port}, uuid: ${uid}`);
+});
+
 server.start();
 
-signale.debug(`server start ${config.ip}: ${config.port}`);
