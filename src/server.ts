@@ -1,5 +1,6 @@
 import { Context, IServerConfig, NextFNType, Router, Server, V1Decode, V1Encode, Writer } from "node-rpc-lite";
 import signale from "signale";
+import uuid from "uuid/v1";
 
 const config: IServerConfig = {
     duration: 500,
@@ -19,6 +20,8 @@ const log = async (ctx: Context, next: NextFNType) => {
     }
 };
 
+const uid: string = uuid();
+
 // 路由
 const router: Router = new Router();
 router.on("querywork", async (ctx: Context) => {
@@ -32,7 +35,7 @@ router.on("querywork", async (ctx: Context) => {
         }, 1000);
     });
 
-    signale.debug(`recive data ${JSON.stringify(ctx.receive)}`);
+    signale.debug(`recive data ${JSON.stringify(ctx.receive)}, uuid: ${uid}`);
 });
 
 const server: Server = new Server(config);
@@ -44,7 +47,7 @@ server.use(encode.use);
 server.use(writer.use);
 
 server.on("start", (conf) => {
-    signale.debug(`server start ${conf.host}: ${conf.port}`);
+    signale.debug(`server start ${conf.host}: ${conf.port}, uuid: ${uid}`);
 });
 
 server.start();

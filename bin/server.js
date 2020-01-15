@@ -41,6 +41,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var node_rpc_lite_1 = require("node-rpc-lite");
 var signale_1 = __importDefault(require("signale"));
+var v1_1 = __importDefault(require("uuid/v1"));
 var config = {
     duration: 500,
     ip: "127.0.0.1",
@@ -63,6 +64,7 @@ var log = function (ctx, next) { return __awaiter(void 0, void 0, void 0, functi
         }
     });
 }); };
+var uid = v1_1.default();
 // 路由
 var router = new node_rpc_lite_1.Router();
 router.on("querywork", function (ctx) { return __awaiter(void 0, void 0, void 0, function () {
@@ -78,7 +80,7 @@ router.on("querywork", function (ctx) { return __awaiter(void 0, void 0, void 0,
                 })];
             case 1:
                 _a.sent();
-                signale_1.default.debug("recive data " + JSON.stringify(ctx.receive));
+                signale_1.default.debug("recive data " + JSON.stringify(ctx.receive) + ", uuid: " + uid);
                 return [2 /*return*/];
         }
     });
@@ -90,6 +92,6 @@ server.use(log);
 server.use(encode.use);
 server.use(writer.use);
 server.on("start", function (conf) {
-    signale_1.default.debug("server start " + conf.host + ": " + conf.port);
+    signale_1.default.debug("server start " + conf.host + ": " + conf.port + ", uuid: " + uid);
 });
 server.start();

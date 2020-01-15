@@ -9,7 +9,7 @@
     "run-ts": "ts-node",
     "server": "ts-node ./src/server.ts",
     "client": "ts-node ./src/client.ts",
-    "multi-server": "node-agent ./bin/server.js"
+    "multi-server": "node-agent -s ./bin/server.js -t 4"
   },
   "repository": {
     "type": "git",
@@ -23,10 +23,12 @@
   "homepage": "https://github.com/node-rpc/node-rpc-examples#readme",
   "dependencies": {
     "@types/signale": "^1.2.1",
-    "node-agent-cli": "^1.0.8",
+    "@types/uuid": "^3.4.6",
+    "node-agent-cli": "^1.0.9",
     "node-rpc-lite": "^1.0.5",
     "signale": "^1.4.0",
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.4",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "ts-node": "^8.6.1",
