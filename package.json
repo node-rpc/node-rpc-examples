@@ -8,8 +8,11 @@
     "bin": "tsc -p .",
     "run-ts": "ts-node",
     "server": "ts-node ./src/server.ts",
+    "zkserver": "ts-node ./src/baseZk/zkServer.ts",
+    "balanceClient": "ts-node ./src/baseZk/balanceClient.ts",
     "client": "ts-node ./src/client.ts",
-    "multi-server": "node-agent -s ./bin/server.js -t 4"
+    "multi-server": "node-agent -s ./bin/server.js -t 4",
+    "multi-zkserver": "node-agent -s ./bin/baseZk/zkServer.js -t 4"
   },
   "repository": {
     "type": "git",
@@ -22,13 +25,19 @@
   },
   "homepage": "https://github.com/node-rpc/node-rpc-examples#readme",
   "dependencies": {
+    "@koa/router": "^8.0.5",
+    "@types/koa": "^2.11.0",
+    "@types/koa__router": "^8.0.2",
     "@types/signale": "^1.2.1",
     "@types/uuid": "^3.4.6",
+    "@types/zookeeper": "^3.4.1",
+    "koa": "^2.11.0",
     "node-agent-cli": "^1.0.9",
-    "node-rpc-lite": "^1.0.5",
+    "node-rpc-lite": "^1.0.6",
     "signale": "^1.4.0",
     "typescript": "^3.7.4",
-    "uuid": "^3.3.3"
+    "uuid": "^3.3.3",
+    "zookeeper": "^4.5.1"
   },
   "devDependencies": {
     "ts-node": "^8.6.1",
