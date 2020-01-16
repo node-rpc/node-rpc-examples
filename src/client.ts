@@ -11,7 +11,7 @@ const client: Client = new Client({
     port,
 });
 
-client.connnect();
+client.connect();
 signale.debug("connect success !!");
 
 const message = {
